@@ -1,11 +1,10 @@
 package com.debuggeandoideas.erp_lite;
 
-import com.debuggeandoideas.erp_lite.domain.order.OrderId;
+import com.debuggeandoideas.erp_lite.domain.entities.order.OrderId;
 import com.debuggeandoideas.erp_lite.domain.shared.Email;
 import com.debuggeandoideas.erp_lite.domain.shared.Money;
 import com.debuggeandoideas.erp_lite.persistence.mail.adapter.GmailAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
