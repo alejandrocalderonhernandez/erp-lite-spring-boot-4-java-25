@@ -27,7 +27,7 @@ public class OrderItem extends Entity<OrderItemId> {
 
     /**
      * Creates an OrderItem from a Product and quantity.
-     * This is a snapshot: product name and price are frozen at order creation.
+     *      * This is a snapshot: product name and price are frozen at order creation.
      *
      * @param product  the product to order
      * @param quantity the quantity to order

@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface ProductRepositoryPort {
 
     ProductRoot save(ProductRoot product);
-    Optional<ProductRoot> findAbyId(ProductId id);
+    Optional<ProductRoot> findAllById(ProductId id);
     Optional<ProductRoot> findBySku(String sku);
     void delete(ProductRoot product);
 }
