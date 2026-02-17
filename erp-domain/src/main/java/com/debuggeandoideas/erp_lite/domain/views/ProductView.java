@@ -1,4 +1,4 @@
-package com.debuggeandoideas.erp_lite.domain.entities.products_view;
+package com.debuggeandoideas.erp_lite.domain.views;
 
 import java.util.List;
 import java.util.Map;
@@ -17,4 +17,5 @@ public record ProductView(
         Integer stock,
         String imageUrl,
         List<String> tags,
-        Map<String, Object> specifications) { }
+        Map<String, Object> specifications) {
+}
