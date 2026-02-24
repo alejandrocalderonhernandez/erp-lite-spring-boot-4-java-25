@@ -13,7 +13,7 @@ public interface ProductInCatalogRepository extends MongoRepository<ProductInCat
 
     List<ProductInCatalogDocument> findByNameContainingIgnoreCase(String text);
 
-    @Query("{ 'text' :  { '$search' : ?0}, 'active' :  true}")
+    @Query("{ '$text' :  { '$search' : ?0}, 'active' :  true}")
     List<ProductInCatalogDocument> findByTextAndActive(String text);
 
     List<ProductInCatalogDocument> findByCategoryIdAndActiveTrue(String category);

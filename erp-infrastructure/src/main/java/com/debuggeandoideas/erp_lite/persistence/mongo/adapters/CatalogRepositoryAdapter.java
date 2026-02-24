@@ -8,10 +8,13 @@ import com.debuggeandoideas.erp_lite.persistence.mongo.mappers.CatalogMapper;
 import com.debuggeandoideas.erp_lite.persistence.mongo.repositories.CatalogRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import static com.debuggeandoideas.erp_lite.constants.CacheConstants.*;
 
 @Repository
 @Slf4j
@@ -20,10 +23,22 @@ public class CatalogRepositoryAdapter implements CatalogRepositoryPort {
 
     private final CatalogRepository catalogRepository;
     private final CatalogMapper catalogMapper;
+    private final CacheManager cacheManager;
 
     @Override
     public Optional<CatalogView> findByType(CatalogType type) {
         log.info("Find catalog by type: {}", type);
+
+        Cache cache = this.cacheManager.getCache(CACHE_CATALOGS_BY_TYPE);
+
+        if (cache != null) {
+            CatalogView catalogInCache = cache.get(type.name(), CatalogView.class);
+
+            if (catalogInCache != null) {
+                log.info("Found catalog in cache: {}", catalogInCache);
+                return Optional.of(catalogInCache);
+            }
+        }
         return catalogRepository.findByCatalogType(type)
                 .map(catalogMapper::toView);
     }
@@ -31,6 +46,17 @@ public class CatalogRepositoryAdapter implements CatalogRepositoryPort {
     @Override
     public List<ItemsView> findItemsByType(CatalogType type) {
         log.info("Find items catalog by type: {}", type);
+
+        Cache cache = this.cacheManager.getCache(CACHE_CATALOGS_ITEMS);
+
+        if (cache != null) {
+            List<ItemsView> itemsInCache = cache.get(type.name(), List.class);
+
+            if (itemsInCache != null) {
+                log.info("Found catalog items in cache, total: {}", itemsInCache.size());
+                return itemsInCache;
+            }
+        }
 
         return catalogRepository.findByCatalogType(type)
                 .map(doc -> doc.getItems()
