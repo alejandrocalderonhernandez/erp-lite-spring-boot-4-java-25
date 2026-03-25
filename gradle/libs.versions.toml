@@ -1,0 +1,24 @@
+[versions]
+spring-boot           = "4.0.4"
+dependency-management = "1.1.7"
+lombok                = "1.18.42"
+mapstruct             = "1.6.3"
+lombok-mapstruct      = "0.2.0"
+postgresql            = "42.7.8"
+aws-s3                = "2.41.0"
+springdoc             = "2.8.3"
+java                  = "25"
+
+[libraries]
+lombok              = { module = "org.projectlombok:lombok",                         version.ref = "lombok" }
+mapstruct           = { module = "org.mapstruct:mapstruct",                          version.ref = "mapstruct" }
+mapstruct-processor = { module = "org.mapstruct:mapstruct-processor",                version.ref = "mapstruct" }
+lombok-mapstruct    = { module = "org.projectlombok:lombok-mapstruct-binding",       version.ref = "lombok-mapstruct" }
+postgresql          = { module = "org.postgresql:postgresql",                        version.ref = "postgresql" }
+aws-s3              = { module = "software.amazon.awssdk:s3",                        version.ref = "aws-s3" }
+springdoc           = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui",version.ref = "springdoc" }
+
+[plugins]
+spring-boot           = { id = "org.springframework.boot",          version.ref = "spring-boot" }
+dependency-management = { id = "io.spring.dependency-management",   version.ref = "dependency-management" }
+sonarqube             = { id = "org.sonarqube",                     version = "5.1.0.4882" }

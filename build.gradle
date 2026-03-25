@@ -30,31 +30,11 @@ subprojects {
     }
 
     dependencies {
-        // Lombok
-        compileOnly 'org.projectlombok:lombok:1.18.42'
-        annotationProcessor 'org.projectlombok:lombok:1.18.42'
-
-        //Javax validator
-        implementation 'org.springframework.boot:spring-boot-starter-validation'
-
-        //Mapstruct
-        implementation 'org.mapstruct:mapstruct:1.6.3'
-        annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
-
-        //Binding Lombok-Mapstruct
-        implementation 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
-
-        // Testing
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
-        implementation 'org.springframework.boot:spring-boot-starter-security'
-        implementation 'org.springframework.security:spring-security-oauth2-authorization-server'
-        implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
     }
 
     tasks.named('test') {
         useJUnitPlatform()
     }
-
 }
